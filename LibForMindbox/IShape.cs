@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibForMindbox
 {
-    interface IShape
+    public interface IShape
     {
+        double CalcArea();
     }
 }
