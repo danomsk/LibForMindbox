@@ -23,18 +23,27 @@
  **TABLE Categorys  
  (  
   Id INT PRIMORY KEY IDNTITY,  
-  Name NVARCHAR(max)  
+  Name varchar(150) NOT NULL  
  )**  
  
  **TABLE Products  
  (  
   Id INT PRIMORY KEY IDENTITY,  
-  Name NVarchar,  
-  Id_Category INT REFERENCES Categorys (Id)  
+  Name varchar(150) NOT NULL,  
  )**  
+
+ **TABLE CategorysProducts
+ (
+  IdCategory INT REFERENCES Categorys(Id),
+  IdProducts INT REFERENCES Products(Id),
+  CONSTRAINS CategoryProductPK PRYMARY KEY(categoryId, productId)
+ )**
  
  Запрос:
  
- ` SELECT Products.Name Categorys.Name FROM Products
- LEFT JOIN Categorys ON Categorys.Id = Products.Id `
+`SELECT 
+c.Name [CategoryName],
+p.Name [ProductName] FROM Category c
+LEFT JOIN CategoryProduct cp ON cp.IdCategory = c.Id
+LEFT JOIN Product p ON p.Id = cp.IdProduct `
  
