@@ -23,13 +23,13 @@
  **TABLE Categorys  
  (  
   Id INT PRIMORY KEY IDNTITY,  
-  Name varchar(150) NOT NULL  
+  Name varchar(150)  
  )**  
  
  **TABLE Products  
  (  
   Id INT PRIMORY KEY IDENTITY,  
-  Name varchar(150) NOT NULL,  
+  Name varchar(150)
  )**  
 
  **TABLE CategorysProducts
