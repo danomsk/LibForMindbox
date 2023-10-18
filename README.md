@@ -22,28 +22,28 @@
  
  **TABLE Categorys  
  (  
-  Id INT PRIMORY KEY IDNTITY,  
+  Id INT PRIMORY KEY IDENTITY,  
   Name varchar(150)  
  )**  
  
  **TABLE Products  
  (  
   Id INT PRIMORY KEY IDENTITY,  
-  Name varchar(150)
+  Name varchar(150)  
  )**  
 
- **TABLE CategorysProducts
- (
+ **TABLE CategorysProducts    
+ (   
   IdCategory INT REFERENCES Categorys(Id),
   IdProducts INT REFERENCES Products(Id),
-  CONSTRAINS CategoryProductPK PRYMARY KEY(categoryId, productId)
+  CONSTRAINS CategoryProductPK PRYMARY KEY(categoryId, productId)   
  )**
  
- Запрос:
- 
-`SELECT 
-c.Name [CategoryName],
-p.Name [ProductName] FROM Category c
-LEFT JOIN CategoryProduct cp ON cp.IdCategory = c.Id
-LEFT JOIN Product p ON p.Id = cp.IdProduct `
- 
+ Запрос:  
+
+**SELECT  
+c.Name [CategoryName],  
+p.Name [ProductName]  
+FROM Category c  
+LEFT JOIN CategoryProduct cp ON cp.IdCategory = c.Id  
+LEFT JOIN Product p ON p.Id = cp.IdProduct**
