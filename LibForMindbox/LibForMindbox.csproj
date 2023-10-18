@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
-    <Compile Include="IShape.cs" />
-    <Compile Include="Triangle.cs" />
+    <Compile Include="Shapes\Circle.cs" />
+    <Compile Include="Interfaces\ICircle.cs" />
+    <Compile Include="Interfaces\IShape.cs" />
+    <Compile Include="Interfaces\ITriangle.cs" />
+    <Compile Include="Shapes\Shape.cs" />
+    <Compile Include="Shapes\Triangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
