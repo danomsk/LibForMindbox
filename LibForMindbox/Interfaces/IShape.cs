@@ -2,6 +2,6 @@
 {
     public interface IShape
     {
-        double CalcArea();
+        //TODO: Описать методы, которые будут использоваться для всех фигур.
     }
 }

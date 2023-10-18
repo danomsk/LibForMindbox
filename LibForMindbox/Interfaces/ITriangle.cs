@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibForMindbox.Interfaces
 {
-    internal class ITriangle
+    public interface ITriangle : IShape
     {
+        double CalcArea();
     }
 }

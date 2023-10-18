@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace LibForMindbox.Shapes
 {
-    internal class Shape
+    public class Shape : IShape
     {
+        public Shape()
+        {
+                
+        }
+        
+        //TODO: Описать методы которые могут использоваться для всех фигур
+
+
     }
 }

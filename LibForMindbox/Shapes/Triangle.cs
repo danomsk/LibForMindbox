@@ -1,8 +1,10 @@
-﻿using System;
+﻿using LibForMindbox.Interfaces;
+using LibForMindbox.Shapes;
+using System;
 
 namespace LibForMindbox
 {
-    public class Triangle : IShape
+    public class Triangle : Shape, ITriangle
     {
         public readonly double side1;
         public readonly double side2;
@@ -15,24 +17,45 @@ namespace LibForMindbox
             this.side2 = side2;
             this.side3 = side3;
         }
+
+        /// <summary>
+        /// Рассчитать площадь треугольника
+        /// </summary>
+        /// <returns></returns>
         public double CalcArea()
         {
-            if (IsRectangular())
-            {
-                return (arr_for_rect[0] * arr_for_rect[1]) / 2;
-            }
-            else
-            {
-                double p = (side1 + side2 + side3) / 2;
-                double s = Math.Sqrt(p * (p - side1) * (p - side2) * (p - side3));
-                if (double.IsNaN(s))
-                    throw new Exception("There is no triangle with such sides");
-
-                return s;
-            }
+            return IsRectangle() ? RightTriangle() : JustTriangle();
         }
 
-        private bool IsRectangular()
+        /// <summary>
+        /// Если треугольник прямоугольный
+        /// </summary>
+        /// <returns>Площадь треугольника</returns>
+        private double RightTriangle()
+        {
+            return (arr_for_rect[0] * arr_for_rect[1]) / 2;
+        }
+
+        /// <summary>
+        /// Если треугольник не прямоугольный
+        /// </summary>
+        /// <returns>Площадь треугольника</returns>
+        /// <exception cref="Exception"></exception>
+        private double JustTriangle()
+        {
+            double p = (side1 + side2 + side3) / 2;
+            double s = Math.Sqrt(p * (p - side1) * (p - side2) * (p - side3));
+            if (double.IsNaN(s))
+                throw new Exception("There is no triangle with such sides");
+
+            return s;
+        }
+
+        /// <summary>
+        /// Является ли треугольник прямоугольным
+        /// </summary>
+        /// <returns>True - является</returns>
+        private bool IsRectangle()
         {
             if (SquareHypot(side1, side2) == side3)
             {
