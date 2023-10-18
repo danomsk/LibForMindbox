@@ -1,49 +1,84 @@
-Библиотека имеет два класса Circle и Triangle, которые наследуются от интерфейса IShape.
+## Интерфейсы
 
-## IShape
-Реализован метод **CalcArea** для вычисления площади.
+### IShape
 
-## Circle
-Переопределяет метод **CalcArea** для вычисления площади круга по радиусу. В случае передачи в конструктор отрицательного радиуса выбрасывает исключение.
+Интерфейс `IShape` определяет общие методы, которые будут использоваться для всех геометрических фигур.
 
-## Triangle
-Переопределяет метод **CalcArea** для вычисления площади треугольника по трем сторонам. Если треугольник невозможно создать из этих сторон, выбрасывается исключение.
-В случае, если треугольник прямоугольный, площадь расчитывается по формуле : 
+### ICircle
 
-![](https://sun9-25.userapi.com/impg/LsfOJBFzlLnhVrQP7f22ZIpeitsTQNPDkjV5-A/S3ZwWsbXB5c.jpg?size=456x237&quality=96&sign=d56e06c7c2b92e5510273b742657590e&type=album)
+Интерфейс `ICircle` наследует `IShape` и определяет метод `CalcArea()`, который используется для расчета площади круга.
 
-Где a и b - катеты прямоугольника.
+### ITriangle
+
+Интерфейс `ITriangle` также наследует `IShape` и определяет метод `CalcArea()`, который используется для расчета площади треугольника.
+
+## Классы
+
+### Shape
+
+Класс `Shape` реализует интерфейс `IShape` и предоставляет общие методы, которые могут использоваться для всех геометрических фигур. 
+
+### Circle
+
+Класс `Circle` наследует `Shape` и реализует интерфейс `ICircle`. Он представляет круг и предоставляет метод `CalcArea()`, который рассчитывает площадь круга на основе его радиуса или диаметра.
+
+### Triangle
+
+Класс `Triangle` также наследует `Shape` и реализует интерфейс `ITriangle`. Он представляет треугольник и предоставляет метод `CalcArea()`, который рассчитывает площадь треугольника. Класс также содержит вспомогательные методы для определения, является ли треугольник прямоугольным и для расчета площади прямоугольного треугольника.
+
+## Пример использования
+
+```csharp
+// Пример создания круга и расчета его площади
+ICircle circle = new Circle(5.0);
+double circleArea = circle.CalcArea();
+
+// Пример создания треугольника и расчета его площади
+ITriangle triangle = a Triangle(3.0, 4.0, 5.0);
+double triangleArea = triangle.CalcArea();
+```
+
 
 
 ----------------------------------------------------------------------
-# Ответ на второе задание
+## Ответ на второе задание
 
- Я вижу структуру таблиц так
- 
- **TABLE Categorys  
- (  
-  Id INT PRIMORY KEY IDENTITY,  
-  Name varchar(150)  
- )**  
- 
- **TABLE Products  
- (  
-  Id INT PRIMORY KEY IDENTITY,  
-  Name varchar(150)  
- )**  
+Я вижу структуру таблиц так:
 
- **TABLE CategorysProducts    
- (   
-  IdCategory INT REFERENCES Categorys(Id),
-  IdProducts INT REFERENCES Products(Id),
-  CONSTRAINS CategoryProductPK PRYMARY KEY(categoryId, productId)   
- )**
- 
- Запрос:  
+**Таблица `Categorys`**
+```sql
+TABLE Category
+(
+    Id INT PRIMARY KEY IDENTITY,
+    Name VARCHAR(150)
+)
+```
 
-**SELECT  
-c.Name [CategoryName],  
-p.Name [ProductName]  
-FROM Category c  
-LEFT JOIN CategoryProduct cp ON cp.IdCategory = c.Id  
-LEFT JOIN Product p ON p.Id = cp.IdProduct**
+**Таблица `Product`**
+```sql
+TABLE Product
+(
+    Id INT PRIMARY KEY IDENTITY,
+    Name VARCHAR(150)
+)
+```
+
+**Таблица `CategorysProducts`**
+```sql
+TABLE CategoryProduct
+(
+    IdCategory INT REFERENCES Categorys(Id),
+    IdProducts INT REFERENCES Products(Id),
+    CONSTRAINT CategoryProductPK PRIMARY KEY (categoryId, productId)
+)
+```
+
+**Запрос**
+```sql
+SELECT
+    c.Name AS [CategoryName],
+    p.Name AS [ProductName]
+FROM Category c
+LEFT JOIN CategoryProduct cp ON cp.IdCategory = c.Id
+LEFT JOIN Product p ON p.Id = cp.IdProduct
+```
